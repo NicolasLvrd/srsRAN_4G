@@ -8,7 +8,6 @@ mkdir build
 cd build
 cmake ../
 make
-make test
 sudo make install
 srsran_install_configs.sh user
 ```
@@ -18,7 +17,6 @@ srsran_install_configs.sh user
 git pull
 cd build
 make
-make test
 sudo make install
 ```
 
