@@ -1,3 +1,27 @@
+Setup for RCA
+======
+### First install
+```
+git clone https://github.com/NicolasLvrd/srsRAN_4G.git
+cd srsRAN_4G
+mkdir build
+cd build
+cmake ../
+make
+make test
+sudo make install
+srsran_install_configs.sh user
+```
+
+### Build a new version
+```
+git pull
+cd build
+make
+make test
+sudo make install
+```
+
 srsRAN
 ======
 
