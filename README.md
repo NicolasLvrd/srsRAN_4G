@@ -12,6 +12,7 @@ cd build
 sudo cmake ../
 sudo make
 sudo make install
+sudo uhd_images_downloader
 sudo srsran_install_configs.sh user
 ```
 
