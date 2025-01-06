@@ -2,15 +2,17 @@ Setup for RCA
 ======
 ### First install
 ```
-sudo apt get update
+sudo apt-get update
+sudo apt-get install build-essential cmake libfftw3-dev libmbed
+sudo apt install git
 sudo git clone https://github.com/NicolasLvrd/srsRAN_4G.git
 cd srsRAN_4G
-mkdir build
+sudo mkdir build
 cd build
-cmake ../
-make
+sudo cmake ../
+sudo make
 sudo make install
-srsran_install_configs.sh user
+sudo srsran_install_configs.sh user
 ```
 
 ### Build a new version
