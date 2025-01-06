@@ -2,7 +2,8 @@ Setup for RCA
 ======
 ### First install
 ```
-git clone https://github.com/NicolasLvrd/srsRAN_4G.git
+sudo apt get update
+sudo git clone https://github.com/NicolasLvrd/srsRAN_4G.git
 cd srsRAN_4G
 mkdir build
 cd build
