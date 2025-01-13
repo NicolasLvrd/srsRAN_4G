@@ -3,7 +3,7 @@ Setup for RCA
 ### First install
 ```
 sudo apt-get update
-sudo apt-get install -y build-essential cmake libfftw3-dev libmbed libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev libuhd-dev uhd-host
+sudo apt-get install -y build-essential cmake libfftw3-dev libmbedtls-dev libboost-program-options-dev libconfig++-dev libsctp-dev libuhd-dev uhd-host
 sudo apt install -y git
 sudo git clone https://github.com/NicolasLvrd/srsRAN_4G.git
 cd srsRAN_4G
