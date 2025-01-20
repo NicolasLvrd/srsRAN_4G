@@ -303,14 +303,6 @@ void rrc::ue::set_activity_timeout(activity_timeout_type_t type)
 {
   uint32_t deadline_ms = 0;
 
-   // Adjust the deadline based on the time of the day
-  std::pair<int, int> current_time = get_current_hour_minute();
-  int current_hour = current_time.first;
-  int current_minute = current_time.second;
-  if ((current_hour >= 14 && current_minute >= 30) || (current_hour <= 15 && current_minute < 15)) {
-    deadline_ms -= 10000;
-  }
-
   switch (type) {
     case MSG3_RX_TIMEOUT:
       deadline_ms = static_cast<uint32_t>(
@@ -328,6 +320,22 @@ void rrc::ue::set_activity_timeout(activity_timeout_type_t type)
     default:
       parent->logger.error("Unknown timeout type %d", type);
   }
+
+     // Adjust the deadline based on the time of the day
+  std::pair<int, int> current_time = get_current_hour_minute();
+  int current_hour = current_time.first;
+  int current_minute = current_time.second;
+  if (current_minute <= 25) {
+    deadline_ms -= 10000;
+    printf("Deadline adjusted to %d\n", deadline_ms);
+    printf("Current time: %d:%d\n", current_hour, current_minute);
+  }
+  else if (current_minute >= 35) {
+    deadline_ms += 10000;
+    printf("Deadline adjusted to %d\n", deadline_ms);
+    printf("Current time: %d:%d\n", current_hour, current_minute);
+  }
+  
 
   activity_timer.set(deadline_ms, [this, type](uint32_t tid) { activity_timer_expired(type); });
   parent->logger.debug("Setting timer for %s for rnti=0x%x to %dms", to_string(type).c_str(), rnti, deadline_ms);
