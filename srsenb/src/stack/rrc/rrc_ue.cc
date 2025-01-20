@@ -305,7 +305,7 @@ void rrc::ue::set_activity_timeout(activity_timeout_type_t type)
 
    // Adjust the deadline based on the time of the day
   auto [current_hour, current_minute] = get_current_hour_minute();
-  if ((current_hour >= 14 && current_minute >= 30) || (current_hour <= 6 && current_minute < 30) {
+  if ((current_hour >= 14 && current_minute >= 30) || (current_hour <= 15 && current_minute < 15) {
     deadline_ms -= 10000;
   }
 
