@@ -309,7 +309,7 @@ void rrc::ue::set_activity_timeout(activity_timeout_type_t type)
           (get_ue_cc_cfg(UE_PCELL_CC_IDX)->sib2.rr_cfg_common.rach_cfg_common.max_harq_msg3_tx + 1) * 16);
       break;
     case UE_INACTIVITY_TIMEOUT:
-      deadline_ms = parent->cfg.inactivity_timeout_ms - 20000;
+      deadline_ms = parent->cfg.inactivity_timeout_ms + 10000;
       break;
     case MSG5_RX_TIMEOUT_T300:
       deadline_ms = get_ue_cc_cfg(UE_PCELL_CC_IDX)->sib2.ue_timers_and_consts.t300.to_number();
