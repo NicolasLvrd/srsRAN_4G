@@ -310,16 +310,14 @@ void rrc::ue::set_activity_timeout(activity_timeout_type_t type)
       break;
     case UE_INACTIVITY_TIMEOUT:
       deadline_ms = parent->cfg.inactivity_timeout_ms;
-      // Adjust the deadline based on the time of the day
       std::pair<int, int> current_time = get_current_hour_minute();
       int current_hour = current_time.first;
       int current_minute = current_time.second;
-      if (current_minute <= 25) {
+      if (current_minute <= 30) {
         deadline_ms -= 10000;
         printf("Deadline adjusted to %d\n", deadline_ms);
         printf("Current time: %d:%d\n", current_hour, current_minute);
-      }
-      else if (current_minute >= 35) {
+      } else if (current_minute >= 45) {
         deadline_ms += 10000;
         printf("Deadline adjusted to %d\n", deadline_ms);
         printf("Current time: %d:%d\n", current_hour, current_minute);
