@@ -303,19 +303,6 @@ void rrc::ue::set_activity_timeout(activity_timeout_type_t type)
 {
   uint32_t deadline_ms = 0;
 
-  std::pair<int, int> current_time = get_current_hour_minute();
-  int current_hour = current_time.first;
-  int current_minute = current_time.second;
-  if (current_minute <= 35) {
-    deadline_ms += 10000;
-    printf("Deadline adjusted to %d\n", deadline_ms);
-    printf("Current time: %d:%d\n", current_hour, current_minute);
-  } else if (current_minute >= 45) {
-    deadline_ms += 20000;
-    printf("Deadline adjusted to %d\n", deadline_ms);
-    printf("Current time: %d:%d\n", current_hour, current_minute);
-  }
-
   switch (type) {
     case MSG3_RX_TIMEOUT:
       deadline_ms = static_cast<uint32_t>(
