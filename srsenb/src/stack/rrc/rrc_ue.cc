@@ -306,12 +306,12 @@ void rrc::ue::set_activity_timeout(activity_timeout_type_t type)
   std::pair<int, int> current_time = get_current_hour_minute();
   int current_hour = current_time.first;
   int current_minute = current_time.second;
-  if (current_minute <= 30) {
-    deadline_ms -= 10000;
+  if (current_minute <= 35) {
+    deadline_ms += 10000;
     printf("Deadline adjusted to %d\n", deadline_ms);
     printf("Current time: %d:%d\n", current_hour, current_minute);
   } else if (current_minute >= 45) {
-    deadline_ms += 10000;
+    deadline_ms += 20000;
     printf("Deadline adjusted to %d\n", deadline_ms);
     printf("Current time: %d:%d\n", current_hour, current_minute);
   }
@@ -322,7 +322,7 @@ void rrc::ue::set_activity_timeout(activity_timeout_type_t type)
           (get_ue_cc_cfg(UE_PCELL_CC_IDX)->sib2.rr_cfg_common.rach_cfg_common.max_harq_msg3_tx + 1) * 16);
       break;
     case UE_INACTIVITY_TIMEOUT:
-      deadline_ms = parent->cfg.inactivity_timeout_ms;
+      deadline_ms = parent->cfg.inactivity_timeout_ms - 20000;
       break;
     case MSG5_RX_TIMEOUT_T300:
       deadline_ms = get_ue_cc_cfg(UE_PCELL_CC_IDX)->sib2.ue_timers_and_consts.t300.to_number();
