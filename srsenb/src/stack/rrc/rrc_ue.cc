@@ -32,8 +32,6 @@
 #include "srsran/interfaces/enb_rlc_interfaces.h"
 #include "srsran/interfaces/enb_s1ap_interfaces.h"
 #include "srsran/support/srsran_assert.h"
-#include <ctime>
-#include <utility>
 
 using namespace asn1::rrc;
 
@@ -291,12 +289,6 @@ void rrc::ue::protocol_failure()
 
   parent->s1ap->user_release(rnti, asn1::s1ap::cause_radio_network_opts::fail_in_radio_interface_proc);
   con_release_result = procedure_result_code::fail_in_radio_interface_proc;
-}
-
-std::pair<int, int> get_current_hour_minute() {
-  std::time_t t = std::time(nullptr);
-  std::tm* now = std::localtime(&t);
-  return std::make_pair(now->tm_hour, now->tm_min);
 }
 
 void rrc::ue::set_activity_timeout(activity_timeout_type_t type)
